@@ -1,0 +1,58 @@
+{% comment %} Header with logo, navigation, search trigger, mini-cart, predictive search panel {% endcomment %}
+<section class="site-header">
+  <div class="container">
+    <a class="logo" href="/" aria-label="{{ shop.name }}">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" height="40" loading="eager" />
+      {% else %}
+        <span>{{ shop.name }}</span>
+      {% endif %}
+    </a>
+    <nav class="primary-nav" aria-label="{{ 'sections.header.primary_navigation' | t }}">
+      <ul>
+        {% assign menu = section.settings.menu %}
+        {% if menu and linklists[menu.handle] %}
+          {% for link in linklists[menu.handle].links %}
+            <li>
+              <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        {% elsif linklists.main-menu %}
+          {% for link in linklists.main-menu.links %}
+            <li>
+              <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button id="search-trigger" class="icon-button" aria-expanded="false" aria-controls="predictive-search" aria-label="{{ 'general.search.open' | t }}">🔎</button>
+      <a href="/cart" class="icon-button" aria-label="{{ 'general.cart' | t }}" id="mini-cart-button" data-open-cart>
+        🛒 <span class="cart-count" aria-live="polite">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+  <div id="predictive-search" class="predictive-search" hidden role="dialog" aria-modal="false" aria-label="{{ 'general.search.search' | t }}">
+    <div class="predictive-search__inner">
+      <form action="/search" method="get" role="search">
+        <input id="predictive-search-input" name="q" type="search" autocomplete="off"
+               placeholder="{{ 'general.search.placeholder' | t }}" aria-autocomplete="list" aria-controls="predictive-search-list" />
+      </form>
+      <div id="predictive-results" role="listbox" aria-label="{{ 'general.search.results' | t }}">
+        <!-- JS populated -->
+      </div>
+      <button class="predictive-close" data-close-predictive aria-label="{{ 'general.search.close' | t }}">×</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Main menu" }
+  ]
+}
+{% endschema %}

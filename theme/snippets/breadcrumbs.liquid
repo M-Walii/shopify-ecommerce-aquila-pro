@@ -1,0 +1,15 @@
+<nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs.label' | t }}">
+  <ol>
+    <li><a href="/">{{ 'general.breadcrumbs.home' | t }}</a></li>
+    {% if template.name == 'collection' and collection %}
+      <li aria-current="page">{{ collection.title }}</li>
+    {% elsif template.name == 'product' and product %}
+      {% if collection %}
+        <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+      {% endif %}
+      <li aria-current="page">{{ product.title }}</li>
+    {% elsif template.name == 'search' %}
+      <li aria-current="page">{{ 'general.search.search' | t }}</li>
+    {% endif %}
+  </ol>
+</nav>

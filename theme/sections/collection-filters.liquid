@@ -1,0 +1,55 @@
+<section class="collection-filters" data-collection-filters>
+  <div class="container">
+    <form id="filters-form" role="search" aria-label="{{ 'filters.aria_label' | t }}">
+      <fieldset>
+        <legend>{{ 'filters.vendors' | t }}</legend>
+        {% assign vendors_concat = '' %}
+        {% for product in collection.products %}
+          {% unless vendors_concat contains product.vendor %}
+            {% assign vendors_concat = vendors_concat | append: product.vendor | append: '|' %}
+          {% endunless %}
+        {% endfor %}
+        {% assign vendor_list = vendors_concat | split: '|' %}
+        <div class="filters vendors">
+          {% for v in vendor_list %}
+            {% if v != '' %}
+              <label><input type="checkbox" name="vendor[]" value="{{ v | escape }}"> {{ v }}</label>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>{{ 'filters.tags' | t }}</legend>
+        <div class="filters tags">
+          {% for tag in collection.all_tags %}
+            <label><input type="checkbox" name="tag[]" value="{{ tag | escape }}"> {{ tag }}</label>
+          {% endfor %}
+        </div>
+      </fieldset>
+      <fieldset class="price">
+        <legend>{{ 'filters.price' | t }}</legend>
+        <input type="number" name="price_min" placeholder="{{ 'filters.min' | t }}" min="0"> -
+        <input type="number" name="price_max" placeholder="{{ 'filters.max' | t }}" min="0">
+      </fieldset>
+      <label>
+        {{ 'filters.sort_by' | t }}
+        <select name="sort_by">
+          <option value="best-selling">{{ 'filters.sort.best_selling' | t }}</option>
+          <option value="price-ascending">{{ 'filters.sort.price_asc' | t }}</option>
+          <option value="price-descending">{{ 'filters.sort.price_desc' | t }}</option>
+          <option value="title-ascending">{{ 'filters.sort.title_asc' | t }}</option>
+          <option value="title-descending">{{ 'filters.sort.title_desc' | t }}</option>
+          <option value="created-descending">{{ 'filters.sort.created_desc' | t }}</option>
+          <option value="created-ascending">{{ 'filters.sort.created_asc' | t }}</option>
+        </select>
+      </label>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Filters",
+  "settings": []
+}
+{% endschema %}

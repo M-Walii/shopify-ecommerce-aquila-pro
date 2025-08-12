@@ -1,0 +1,16 @@
+extends: theme-check:recommended
+
+# Ignore non-theme folders
+ignore:
+  - docs/**
+  - tools/**
+  - .github/**
+
+# Optional customizations
+ThemeCheck:
+  LiquidTag:
+    enabled: true
+  MissingTemplate:
+    enabled: true
+  DeprecatedFilter:
+    enabled: true

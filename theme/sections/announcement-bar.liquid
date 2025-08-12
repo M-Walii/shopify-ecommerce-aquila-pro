@@ -1,0 +1,17 @@
+<div class="announcement-bar">
+  <div class="container">
+    {% assign threshold = settings.free_shipping_threshold | default: 0 %}
+    {% if settings.announcement_text != blank %}
+      <p>{{ settings.announcement_text }}</p>
+    {% elsif threshold > 0 %}
+      <p>{{ 'Free shipping over' }} {{ threshold | money_without_trailing_zeros }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": []
+}
+{% endschema %}

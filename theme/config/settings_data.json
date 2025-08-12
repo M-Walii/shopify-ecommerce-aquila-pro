@@ -1,0 +1,16 @@
+{
+  "current": "default",
+  "presets": {
+    "default": {
+      "sections": {},
+      "order": [],
+      "settings": {
+        "color_primary": "#0a3d62",
+        "color_secondary": "#3c6382",
+        "free_shipping_threshold": 50,
+        "predictive_search_enabled": true,
+        "announcement_text": "Free shipping over $50"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{% if product and product.metafields.custom.usp_badges %}
+  {% assign badges = product.metafields.custom.usp_badges.value %}
+  {% if badges.size > 0 %}
+    <ul class="usp-badges" aria-label="{{ 'products.product.usp' | t }}">
+      {% for badge in badges %}
+        <li class="usp-badge">{{ badge }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "USP Badges",
+  "settings": []
+}
+{% endschema %}

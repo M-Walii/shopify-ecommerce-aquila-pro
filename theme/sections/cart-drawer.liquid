@@ -1,0 +1,26 @@
+<div class="cart-drawer__panel" role="document">
+  <h2 id="cart-drawer-title">{{ 'cart.general.title' | t }}</h2>
+  <button class="cart-drawer__close" data-close-cart aria-label="{{ 'cart.general.close' | t }}">×</button>
+  <div class="cart-drawer__free-ship" data-free-ship data-threshold="{{ settings.free_shipping_threshold | default: 0 }}">
+    <div class="progress"><div class="bar" style="width:0%"></div></div>
+    <div class="note" aria-live="polite"></div>
+  </div>
+  <div class="cart-drawer__items" data-cart-items>
+    <!-- JS populated with /cart.js -->
+  </div>
+  <div class="cart-drawer__footer">
+    <div class="totals">
+      <span>{{ 'cart.general.total' | t }}</span>
+      <strong data-cart-total></strong>
+    </div>
+    <a href="/cart" class="button secondary">{{ 'cart.general.view_cart' | t }}</a>
+    <a href="/checkout" class="button primary" data-begin-checkout>{{ 'cart.general.checkout' | t }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

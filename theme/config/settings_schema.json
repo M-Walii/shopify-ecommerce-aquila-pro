@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {"type":"color","id":"color_primary","label":"Primary color","default":"#0a3d62"},
+      {"type":"color","id":"color_secondary","label":"Secondary color","default":"#3c6382"},
+      {"type":"text","id":"announcement_text","label":"Announcement text","default":"Free shipping over $50"},
+      {"type":"number","id":"free_shipping_threshold","label":"Free shipping threshold (store currency)","default":50},
+      {"type":"checkbox","id":"predictive_search_enabled","label":"Enable predictive search","default":true},
+      {"type":"text","id":"social_twitter","label":"Twitter URL"},
+      {"type":"text","id":"social_facebook","label":"Facebook URL"},
+      {"type":"text","id":"social_instagram","label":"Instagram URL"}
+    ]
+  }
+]

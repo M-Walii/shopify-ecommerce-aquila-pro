@@ -1,0 +1,28 @@
+<article class="product-card">
+  <a href="{{ product.url }}" class="product-card__media">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 600 }}"
+           srcset="{{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 900 }} 900w"
+           sizes="(min-width: 768px) 25vw, 50vw"
+           alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+    {% endif %}
+    {% if product.compare_at_price_max > product.price %}
+      <span class="badge badge--sale">{{ 'products.product.on_sale' | t }}</span>
+    {% endif %}
+  </a>
+  <div class="product-card__info">
+    <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <div class="product-card__price">
+      {% if product.compare_at_price_max > product.price %}
+        <span class="price--sale">{% render 'money', amount: product.price %}</span>
+        <s class="price--compare">{% render 'money', amount: product.compare_at_price_max %}</s>
+      {% else %}
+        <span>{% render 'money', amount: product.price %}</span>
+      {% endif %}
+    </div>
+    <form class="quick-add" method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="button" data-add-to-cart data-product-id="{{ product.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+    </form>
+  </div>
+</article>

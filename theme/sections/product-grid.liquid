@@ -1,0 +1,27 @@
+{% assign collection_handle = section.settings.collection | default: collection.handle %}
+{% assign grid_collection = collections[collection_handle] %}
+<section class="product-grid" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="grid" id="product-grid-items">
+      {% paginate grid_collection.products by section.settings.page_size %}
+        {% for product in grid_collection.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+        <div class="pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "page_size", "min": 4, "max": 48, "step": 4, "default": 12, "label": "Products per page" }
+  ],
+  "presets": [ { "name": "Product Grid" } ]
+}
+{% endschema %}

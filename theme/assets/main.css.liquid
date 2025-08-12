@@ -1,0 +1,32 @@
+/* Aquila Pro main styles */
+:root{--primary: {{ settings.color_primary | default: '#0a3d62' }}; --secondary: {{ settings.color_secondary | default: '#3c6382' }};}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#111}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.skip-link{position:absolute;left:-9999px;top:auto}
+.skip-link:focus{left:16px;top:16px;background:#000;color:#fff;padding:8px 12px}
+.site-header,.site-footer{padding:12px 0;border-bottom:1px solid #eee}
+.primary-nav ul{list-style:none;display:flex;gap:16px;margin:0;padding:0}
+.nav-link{text-decoration:none;color:inherit}
+.button{display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border:none;border-radius:4px;text-decoration:none;cursor:pointer}
+.button.secondary{background:var(--secondary)}
+.icon-button{background:none;border:none;cursor:pointer}
+.hero{padding:48px 0;background:#f7f9fc}
+.product-card{border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.product-card__media img{width:100%;display:block}
+.product-card__info{padding:12px}
+.badge{position:absolute;background:#e74c3c;color:#fff;padding:4px 8px;border-radius:0 0 4px 0}
+.product{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.product{grid-template-columns:1fr 1fr}}
+.cart-drawer{position:fixed;right:0;top:0;height:100%;width:360px;max-width:95vw;background:#fff;box-shadow:-2px 0 12px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;z-index:1000}
+.cart-drawer[aria-hidden="false"]{transform:translateX(0)}
+.cart-drawer__panel{height:100%;display:flex;flex-direction:column}
+.cart-drawer__items{flex:1;overflow:auto;padding:16px}
+.cart-drawer__footer{padding:16px;border-top:1px solid #eee;display:grid;gap:8px}
+.progress{height:6px;background:#eee;border-radius:3px;overflow:hidden;margin:8px 0}
+.progress .bar{height:100%;background:var(--primary);width:0}
+.visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.predictive-search{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-start;justify-content:center;padding:40px}
+.predictive-search[hidden]{display:none}
+.predictive-search__inner{background:#fff;width:min(800px,95vw);padding:16px;border-radius:8px}

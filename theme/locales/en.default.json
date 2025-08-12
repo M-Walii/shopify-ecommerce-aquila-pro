@@ -1,0 +1,55 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Skip to content" },
+    "cart": "Cart",
+    "search": {
+      "open": "Open search",
+      "close": "Close search",
+      "placeholder": "Search products...",
+      "search": "Search",
+      "results": "Results"
+    },
+    "breadcrumbs": { "label": "Breadcrumbs", "home": "Home" }
+  },
+  "sections": {
+    "header": { "name": "Header", "primary_navigation": "Primary navigation" },
+    "announcement_bar": { "name": "Announcements" },
+    "footer": { "name": "Footer", "navigation": "Footer navigation" }
+  },
+  "filters": {
+    "aria_label": "Collection filters",
+    "vendors": "Vendors",
+    "tags": "Tags",
+    "price": "Price",
+    "min": "Min",
+    "max": "Max",
+    "sort_by": "Sort by",
+    "sort": {
+      "best_selling": "Best selling",
+      "price_asc": "Price, low to high",
+      "price_desc": "Price, high to low",
+      "title_asc": "Alphabetically, A-Z",
+      "title_desc": "Alphabetically, Z-A",
+      "created_desc": "Date, new to old",
+      "created_asc": "Date, old to new"
+    }
+  },
+  "products": {
+    "product": {
+      "quantity": "Quantity",
+      "add_to_cart": "Add to cart",
+      "on_sale": "Sale",
+      "sku": "SKU",
+      "usp": "Unique selling points"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "close": "Close cart",
+      "total": "Total",
+      "view_cart": "View cart",
+      "checkout": "Checkout"
+    }
+  }
+}

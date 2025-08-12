@@ -1,0 +1,75 @@
+{% assign product = product %}
+<section class="main-product" data-product-handle="{{ product.handle }}">
+  <div class="container product">
+    <div class="gallery">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+          <img src="{{ media | image_url: width: 900 }}" srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1200 }} 1200w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ media.alt | escape }}" loading="lazy" data-media-id="{{ media.id }}">
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="details">
+      <h1>{{ product.title }}</h1>
+      <div class="breadcrumbs">{% render 'breadcrumbs' %}</div>
+      <div class="price" data-price>
+        {% if product.compare_at_price_max > product.price %}
+          <span class="price--sale">{% render 'money', amount: product.price %}</span>
+          <s class="price--compare">{% render 'money', amount: product.compare_at_price_max %}</s>
+        {% else %}
+          <span>{% render 'money', amount: product.price %}</span>
+        {% endif %}
+      </div>
+      {% if product.has_only_default_variant == false %}
+      <form class="product-form" method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+        {% for option in product.options_with_values %}
+          <fieldset class="option">
+            <legend>{{ option.name }}</legend>
+            <div class="swatches" data-option-index="{{ forloop.index0 }}">
+              {% for value in option.values %}
+                {% assign variant_available = false %}
+                {% for variant in product.variants %}
+                  {% if variant.options[forloop.parentloop.index0] == value and variant.available %}
+                    {% assign variant_available = true %}
+                  {% endif %}
+                {% endfor %}
+                <button type="button" class="swatch" data-value="{{ value }}" aria-pressed="false" {% unless variant_available %}disabled{% endunless %}>{{ value }}</button>
+              {% endfor %}
+            </div>
+          </fieldset>
+        {% endfor %}
+        <div class="quantity">
+          <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+          <input id="quantity" name="quantity" type="number" min="1" value="1">
+        </div>
+        <button type="submit" class="button" data-add-to-cart>{{ 'products.product.add_to_cart' | t }}</button>
+      </form>
+      {% else %}
+      <form class="product-form" method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-variant-id>
+        <div class="quantity">
+          <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+          <input id="quantity" name="quantity" type="number" min="1" value="1">
+        </div>
+        <button type="submit" class="button" data-add-to-cart>{{ 'products.product.add_to_cart' | t }}</button>
+      </form>
+      {% endif %}
+
+      {% section 'usp-badges' %}
+
+      <div class="sku">{{ 'products.product.sku' | t }}: <span data-sku>{{ product.selected_or_first_available_variant.sku }}</span></div>
+    </div>
+  </div>
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [],
+  "blocks": [],
+  "presets": [ { "name": "Main Product" } ]
+}
+{% endschema %}

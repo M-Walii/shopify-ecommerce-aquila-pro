@@ -1,0 +1,55 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Zum Inhalt springen" },
+    "cart": "Warenkorb",
+    "search": {
+      "open": "Suche öffnen",
+      "close": "Suche schließen",
+      "placeholder": "Produkte suchen...",
+      "search": "Suche",
+      "results": "Ergebnisse"
+    },
+    "breadcrumbs": { "label": "Brotkrumen", "home": "Startseite" }
+  },
+  "sections": {
+    "header": { "name": "Kopfzeile", "primary_navigation": "Hauptnavigation" },
+    "announcement_bar": { "name": "Ankündigungen" },
+    "footer": { "name": "Fußzeile", "navigation": "Fußzeilen-Navigation" }
+  },
+  "filters": {
+    "aria_label": "Kollektionsfilter",
+    "vendors": "Hersteller",
+    "tags": "Tags",
+    "price": "Preis",
+    "min": "Min",
+    "max": "Max",
+    "sort_by": "Sortieren nach",
+    "sort": {
+      "best_selling": "Bestseller",
+      "price_asc": "Preis, aufsteigend",
+      "price_desc": "Preis, absteigend",
+      "title_asc": "Alphabetisch, A–Z",
+      "title_desc": "Alphabetisch, Z–A",
+      "created_desc": "Datum, neu zu alt",
+      "created_asc": "Datum, alt zu neu"
+    }
+  },
+  "products": {
+    "product": {
+      "quantity": "Menge",
+      "add_to_cart": "In den Warenkorb",
+      "on_sale": "Angebot",
+      "sku": "Artikel-Nr.",
+      "usp": "Alleinstellungsmerkmale"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Ihr Warenkorb",
+      "close": "Warenkorb schließen",
+      "total": "Summe",
+      "view_cart": "Warenkorb ansehen",
+      "checkout": "Zur Kasse"
+    }
+  }
+}

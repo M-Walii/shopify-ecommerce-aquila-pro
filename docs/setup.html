@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Setup — Aquila Pro</title>
+  <link rel="stylesheet" href="/docs/styles.css" />
+</head>
+<body>
+  <header class="docs-header">
+    <h1>Setup</h1>
+    <nav>
+      <a href="/docs/index.html">Home</a>
+      <a href="/docs/setup.html" aria-current="page">Setup</a>
+      <a href="/docs/performance.html">Performance</a>
+      <a href="/docs/changelog.html">Changelog</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h2>Preview with Shopify CLI</h2>
+    <pre><code>npm i -g @shopify/cli @shopify/theme
+shopify theme dev --path theme
+</code></pre>
+
+    <h2>Metafields</h2>
+    <p>Create product metafield definition <code>custom.usp_badges</code> (List of text).</p>
+
+    <h2>Theme Settings</h2>
+    <ul>
+      <li>Primary/Secondary colors</li>
+      <li>Free shipping threshold</li>
+      <li>Announcement text</li>
+      <li>Predictive search toggle</li>
+      <li>Social links for Organization schema</li>
+    </ul>
+
+    <h2>Netlify</h2>
+    <ol>
+      <li>Deploy this <code>/docs</code> folder as a static site</li>
+      <li>Use Node 20 build image</li>
+      <li>Optional: run <code>npm run docs:validate</code> in CI</li>
+    </ol>
+  </main>
+</body>
+</html>
