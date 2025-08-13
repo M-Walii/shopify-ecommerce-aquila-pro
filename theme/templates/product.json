@@ -1,6 +1,6 @@
 {
   "sections": {
-    "main": {"type": "main-product", "settings": {}}
+    "main": {"type": "pdp-buy-box", "settings": {}}
   },
   "order": ["main"]
 }

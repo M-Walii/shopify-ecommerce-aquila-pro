@@ -1,0 +1,6 @@
+<div class="amz-price">
+  {% render 'money', amount: product.price %}
+  {% if product.compare_at_price_max > product.price %}
+    <s class="price--compare">{% render 'money', amount: product.compare_at_price_max %}</s>
+  {% endif %}
+</div>

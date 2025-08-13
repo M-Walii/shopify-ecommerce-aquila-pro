@@ -1,7 +1,8 @@
 {
   "sections": {
-    "hero": {"type": "hero", "settings": {"heading": "Aquila Pro", "subheading": "Conversion-focused Shopify theme", "cta_label": "Shop Now", "cta_url": "/collections/all"}},
-    "grid": {"type": "product-grid", "settings": {"page_size": 12}}
+    "hero": { "type": "home-hero", "settings": {} },
+    "buckets": { "type": "home-buckets", "settings": {} },
+    "grid": { "type": "product-grid", "settings": { "page_size": 12 } }
   },
-  "order": ["hero", "grid"]
+  "order": ["hero", "buckets", "grid"]
 }

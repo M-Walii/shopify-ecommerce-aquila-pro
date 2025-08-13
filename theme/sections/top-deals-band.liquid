@@ -1,0 +1,17 @@
+<section class="amz-topband" role="navigation" aria-label="Top links">
+  <div class="wrap">
+    {% for b in section.blocks %}
+      <a href="{{ b.settings.url }}">{{ b.settings.label }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Top deals band",
+  "blocks": [
+    {"type":"link","name":"Link","settings":[{"type":"text","id":"label","label":"Label","default":"Today’s Deals"},{"type":"url","id":"url","label":"URL","default":"/collections/all"}]}
+  ],
+  "presets":[{"name":"Top deals band","blocks":[{"type":"link"},{"type":"link"},{"type":"link"},{"type":"link"}]}]
+}
+{% endschema %}

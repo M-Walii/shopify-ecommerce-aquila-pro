@@ -1,0 +1,9 @@
+﻿Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant SKU,Variant Inventory Tracker,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Compare At Price,Variant Requires Shipping,Variant Taxable,Image Src,Image Position
+aquila-tee,Aquila Tee,<p>Soft cotton tee for everyday wear.</p>,Aquila,Apparel,tee|summer,TRUE,Size,S,SKU-TEE-S,shopify,20,continue,manual,24.99,34.99,TRUE,TRUE,https://images.unsplash.com/photo-1520975922203-b7e99a34d71b?w=1200,1
+aquila-tee,,,,,,TRUE,Size,M,SKU-TEE-M,shopify,25,continue,manual,24.99,34.99,TRUE,TRUE,,2
+aquila-tee,,,,,,TRUE,Size,L,SKU-TEE-L,shopify,25,continue,manual,24.99,34.99,TRUE,TRUE,,3
+aquila-hoodie,Aquila Hoodie,<p>Midweight hoodie with comfy fit.</p>,Aquila,Apparel,hoodie|winter,TRUE,Size,XL,SKU-HOOD-XL,shopify,30,continue,manual,49.99,69.99,TRUE,TRUE,https://images.unsplash.com/photo-1520975919533-6c2c1e6f9c1f?w=1200,1
+aquila-cap,Aquila Cap,<p>Adjustable cap with embroidered logo.</p>,Aquila,Accessories,cap|summer,TRUE,Size,One Size,SKU-CAP-OS,shopify,40,continue,manual,14.99,,TRUE,TRUE,https://images.unsplash.com/photo-1503342217505-b0a15cf70489?w=1200,1
+aquila-mug,Aquila Mug,<p>Ceramic mug for coffee lovers.</p>,Aquila,Home,mug|kitchen,TRUE,Size,350ml,SKU-MUG-350,shopify,50,continue,manual,9.99,12.99,TRUE,TRUE,https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=1200,1
+aquila-bag,Aquila Tote Bag,<p>Reusable cotton tote bag.</p>,Aquila,Accessories,bag|eco,TRUE,Size,Standard,SKU-BAG-STD,shopify,60,continue,manual,12.99,16.99,TRUE,TRUE,https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200,1
+aquila-bottle,Aquila Water Bottle,<p>Insulated stainless steel bottle.</p>,Aquila,Accessories,bottle|sport,TRUE,Size,750ml,SKU-BTL-750,shopify,35,continue,manual,19.99,24.99,TRUE,TRUE,https://images.unsplash.com/photo-1514867647720-3d4d3e9d7c83?w=1200,1

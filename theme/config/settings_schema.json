@@ -11,5 +11,21 @@
       {"type":"text","id":"social_facebook","label":"Facebook URL"},
       {"type":"text","id":"social_instagram","label":"Instagram URL"}
     ]
+  },
+  {
+    "name": "Amazon‑style Header",
+    "settings": [
+      {"type":"text","id":"search_categories","label":"Search categories (comma‑separated)","default":"All, Electronics, Fashion, Home"},
+      {"type":"checkbox","id":"badge_fast_delivery","label":"Enable Fast Delivery badge","default":true},
+      {"type":"text","id":"badge_fast_delivery_text","label":"Fast Delivery text","default":"Fast Delivery"}
+    ]
+  },
+  {
+    "name": "PDP",
+    "settings": [
+      {"type":"text","id":"pdp_delivery_text","label":"Delivery text","default":"Estimated delivery in 2–4 days."},
+      {"type":"text","id":"pdp_returns_text","label":"Returns text","default":"Free returns within 30 days."},
+      {"type":"checkbox","id":"buy_now_enabled","label":"Enable Buy Now button","default":true}
+    ]
   }
 ]

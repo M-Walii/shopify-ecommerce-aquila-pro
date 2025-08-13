@@ -1,0 +1,26 @@
+<aside class="amz-facets" aria-label="Filters">
+  {% if collection and collection.filters.size > 0 %}
+    {% for filter in collection.filters %}
+      <details class="amz-facet" {% if filter.active_values.size > 0 %}open{% endif %}>
+        <summary>{{ filter.label }}</summary>
+        <div>
+          {% case filter.type %}
+            {% when 'list' %}
+              {% for v in filter.values %}
+                <label>
+                  <input type="checkbox" name="{{ v.param_name }}" value="{{ v.value }}" {% if v.active %}checked{% endif %} {% if v.count == 0 and v.active == false %}disabled{% endif %}>
+                  <span>{{ v.label }} ({{ v.count }})</span>
+                </label><br>
+              {% endfor %}
+            {% when 'price_range' %}
+              <input name="{{ filter.min_value.param_name }}" type="number" placeholder="Min" value="{{ filter.min_value.value | default: '' }}"> –
+              <input name="{{ filter.max_value.param_name }}" type="number" placeholder="Max" value="{{ filter.max_value.value | default: '' }}">
+          {% endcase %}
+        </div>
+      </details>
+    {% endfor %}
+    <button type="submit" class="button">Apply</button>
+  {% else %}
+    <p>No filters.</p>
+  {% endif %}
+</aside>

@@ -1,0 +1,20 @@
+<section class="container">
+  <div class="amz-buckets">
+    {% for block in section.blocks %}
+      <a class="amz-bucket" href="{{ block.settings.url }}">
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.subtitle }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Home Buckets",
+  "blocks":[
+    {"type":"bucket","name":"Bucket","settings":[{"type":"text","id":"title","label":"Title","default":"Electronics under $50"},{"type":"text","id":"subtitle","label":"Subtitle","default":"Shop budget tech"},{"type":"url","id":"url","label":"URL","default":"/collections/all"}]}
+  ],
+  "presets":[{"name":"Home Buckets","blocks":[{"type":"bucket"},{"type":"bucket"},{"type":"bucket"}]}]
+}
+{% endschema %}

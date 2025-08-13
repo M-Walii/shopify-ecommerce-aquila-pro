@@ -1,0 +1,153 @@
+<div class="collection-page">
+  <div class="container">
+    <div class="collection-layout">
+      <aside class="collection-sidebar">
+        <div class="filter-section">
+          <h3>{{ 'filters.refine' | t | default: 'Refine by' }}</h3>
+          
+          {% if collection.filters.size > 0 %}
+            <form class="facet-filters">
+              {% for filter in collection.filters %}
+                <details class="filter-group" {% if filter.active_values.size > 0 %}open{% endif %}>
+                  <summary>{{ filter.label }}</summary>
+                  <div class="filter-options">
+                    {% case filter.type %}
+                      {% when 'list' %}
+                        {% for value in filter.values %}
+                          <label class="filter-option">
+                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" 
+                                   {% if value.active %}checked{% endif %}
+                                   {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                            <span>{{ value.label }} ({{ value.count }})</span>
+                          </label>
+                        {% endfor %}
+                      {% when 'price_range' %}
+                        <div class="price-range">
+                          <input type="number" name="{{ filter.min_value.param_name }}" 
+                                 placeholder="{{ 'filters.min' | t | default: 'Min' }}" 
+                                 value="{{ filter.min_value.value | default: '' }}">
+                          <span>-</span>
+                          <input type="number" name="{{ filter.max_value.param_name }}" 
+                                 placeholder="{{ 'filters.max' | t | default: 'Max' }}" 
+                                 value="{{ filter.max_value.value | default: '' }}">
+                        </div>
+                    {% endcase %}
+                  </div>
+                </details>
+              {% endfor %}
+              <button type="submit" class="apply-filters">{{ 'filters.apply' | t | default: 'Apply Filters' }}</button>
+            </form>
+          {% else %}
+            <!-- Fallback filters -->
+            <details class="filter-group" open>
+              <summary>{{ 'filters.vendors' | t }}</summary>
+              <div class="filter-options">
+                {% assign vendors = collection.products | map: 'vendor' | uniq %}
+                {% for vendor in vendors %}
+                  <label class="filter-option">
+                    <input type="checkbox" name="vendor[]" value="{{ vendor }}">
+                    <span>{{ vendor }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </details>
+            
+            <details class="filter-group">
+              <summary>{{ 'filters.price' | t }}</summary>
+              <div class="filter-options">
+                <div class="price-range">
+                  <input type="number" name="price_min" placeholder="{{ 'filters.min' | t }}">
+                  <span>-</span>
+                  <input type="number" name="price_max" placeholder="{{ 'filters.max' | t }}">
+                </div>
+              </div>
+            </details>
+          {% endif %}
+        </div>
+      </aside>
+      
+      <main class="collection-content">
+        <div class="collection-header">
+          <h1>{{ collection.title }}</h1>
+          <div class="collection-tools">
+            <span class="results-count">{{ collection.products_count }} {{ 'collections.general.items' | t | default: 'items' }}</span>
+            <select class="sort-by" name="sort_by" onchange="this.form.submit()">
+              <option value="best-selling">{{ 'filters.sort.best_selling' | t }}</option>
+              <option value="price-ascending">{{ 'filters.sort.price_asc' | t }}</option>
+              <option value="price-descending">{{ 'filters.sort.price_desc' | t }}</option>
+              <option value="title-ascending">{{ 'filters.sort.title_asc' | t }}</option>
+              <option value="title-descending">{{ 'filters.sort.title_desc' | t }}</option>
+              <option value="created-descending">{{ 'filters.sort.created_desc' | t }}</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="products-grid amz-grid">
+          {% paginate collection.products by section.settings.products_per_page | default: 16 %}
+            {% for product in collection.products %}
+              <div class="product-card amz-card">
+                <div class="card-media">
+                  <a href="{{ product.url }}">
+                    {% if product.featured_image %}
+                      <img src="{{ product.featured_image | image_url: width: 300 }}" 
+                           alt="{{ product.featured_image.alt | escape }}" 
+                           loading="lazy">
+                    {% endif %}
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="sale-badge amz-badge">{{ 'products.product.on_sale' | t }}</span>
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="card-content">
+                  <h3 class="product-title amz-title">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  {% render 'rating-stars', product: product %}
+                  <div class="product-price amz-price">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="sale-price">{% render 'money', amount: product.price %}</span>
+                      <s class="compare-price">{% render 'money', amount: product.compare_at_price_max %}</s>
+                    {% else %}
+                      <span>{% render 'money', amount: product.price %}</span>
+                    {% endif %}
+                  </div>
+                  {% render 'badges', product: product %}
+                  <form class="quick-add" action="/cart/add" method="post">
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button type="submit" class="quick-add-btn" data-add-to-cart>
+                      {{ 'products.product.add_to_cart' | t }}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            {% endfor %}
+            
+            {% if paginate.pages > 1 %}
+              <div class="pagination-wrapper">
+                {{ paginate | default_pagination }}
+              </div>
+            {% endif %}
+          {% endpaginate %}
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Main",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    }
+  ],
+  "presets": [{"name": "Collection Main"}]
+}
+{% endschema %}

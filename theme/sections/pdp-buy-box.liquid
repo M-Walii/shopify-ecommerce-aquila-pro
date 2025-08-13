@@ -1,0 +1,149 @@
+<div class="product-page">
+  <div class="container">
+    {% render 'breadcrumbs' %}
+    <div class="product-layout amz-pdp">
+      <!-- Image Gallery -->
+      <div class="product-gallery">
+        {% if product.media.size > 1 %}
+          <div class="gallery-thumbs">
+            {% for media in product.media limit: 6 %}
+              {% if media.media_type == 'image' %}
+                <button class="thumb-btn" data-media-id="{{ media.id }}">
+                  <img src="{{ media | image_url: width: 80 }}" alt="{{ media.alt | escape }}" loading="lazy">
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="gallery-main">
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <img src="{{ media | image_url: width: 600 }}" 
+                   srcset="{{ media | image_url: width: 400 }} 400w, {{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 800 }} 800w"
+                   sizes="(min-width: 1024px) 50vw, 100vw"
+                   alt="{{ media.alt | escape }}" 
+                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                   data-media-id="{{ media.id }}"
+                   {% unless forloop.first %}style="display:none"{% endunless %}>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        {% render 'rating-stars', product: product %}
+        
+        <div class="product-price">
+          {% if product.compare_at_price_max > product.price %}
+            <span class="current-price">{% render 'money', amount: product.price %}</span>
+            <s class="original-price">{% render 'money', amount: product.compare_at_price_max %}</s>
+            <span class="discount-percent">-{{ product.compare_at_price_max | minus: product.price | times: 100 | divided_by: product.compare_at_price_max }}%</span>
+          {% else %}
+            <span class="current-price">{% render 'money', amount: product.price %}</span>
+          {% endif %}
+        </div>
+
+        {% if product.description != blank %}
+          <div class="product-description">
+            {{ product.description | truncate: 300 }}
+          </div>
+        {% endif %}
+
+        {% if product.metafields.custom.bullets.value.size > 0 %}
+          <ul class="product-bullets">
+            {% for bullet in product.metafields.custom.bullets.value limit: 5 %}
+              <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <div class="product-variants">
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="variant-selector">
+                <label class="variant-label">{{ option.name }}</label>
+                <div class="variant-options" data-option-index="{{ forloop.index0 }}">
+                  {% for value in option.values %}
+                    <button type="button" class="variant-btn" data-value="{{ value }}">{{ value }}</button>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          {% endunless %}
+        </div>
+
+        <div class="delivery-info">
+          <div class="delivery-item">
+            <strong>{{ 'products.product.delivery' | t | default: 'Delivery' }}:</strong>
+            <span>{{ settings.pdp_delivery_text | default: 'Estimated delivery in 2–4 days.' }}</span>
+          </div>
+          <div class="delivery-item">
+            <strong>{{ 'products.product.returns' | t | default: 'Returns' }}:</strong>
+            <span>{{ settings.pdp_returns_text | default: 'Free returns within 30 days.' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buy Box -->
+      <div class="buy-box amz-buybox">
+        <div class="price-summary">
+          <span class="price-label">{{ 'products.product.price' | t | default: 'Price' }}:</span>
+          <span class="price-value" data-price>{% render 'money', amount: product.price %}</span>
+        </div>
+        
+        <div class="stock-info">
+          {% if product.selected_or_first_available_variant.available %}
+            <span class="in-stock">✓ {{ 'products.product.in_stock' | t | default: 'In Stock' }}</span>
+          {% else %}
+            <span class="out-of-stock">{{ 'products.product.sold_out' | t | default: 'Sold out' }}</span>
+          {% endif %}
+        </div>
+
+        <form class="add-to-cart-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+          
+          <div class="quantity-selector">
+            <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+            <select name="quantity" id="quantity">
+              {% for i in (1..10) %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <button type="submit" class="add-to-cart-btn amz-btn" data-add-to-cart>
+            <span class="btn-text">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+
+          {% if section.settings.buy_now_enabled %}
+            <button type="button" class="buy-now-btn amz-btn" onclick="this.form.action='/checkout'; this.form.submit();">
+              {{ 'products.product.buy_now' | t | default: 'Buy Now' }}
+            </button>
+          {% endif %}
+        </form>
+
+        <div class="secure-checkout">
+          <small>🔒 {{ 'products.product.secure_checkout' | t | default: 'Secure checkout' }}</small>
+        </div>
+
+        {% render 'badges', product: product %}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+</div>
+
+{% schema %}
+{
+  "name":"PDP Buy Box",
+  "settings":[
+    {"type":"checkbox","id":"buy_now_enabled","label":"Enable Buy Now","default":true}
+  ],
+  "presets":[{"name":"PDP Buy Box"}]
+}
+{% endschema %}

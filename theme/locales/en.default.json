@@ -12,9 +12,30 @@
     "breadcrumbs": { "label": "Breadcrumbs", "home": "Home" }
   },
   "sections": {
-    "header": { "name": "Header", "primary_navigation": "Primary navigation" },
+    "header": { 
+      "name": "Header", 
+      "primary_navigation": "Primary navigation",
+      "account": "Account",
+      "orders": "Orders",
+      "cart": "Cart",
+      "search": "Search",
+      "language": "Language",
+      "country": "Country"
+    },
     "announcement_bar": { "name": "Announcements" },
-    "footer": { "name": "Footer", "navigation": "Footer navigation" }
+    "footer": { "name": "Footer", "navigation": "Footer navigation" },
+    "hero": {
+      "shop_now": "Shop Now",
+      "learn_more": "Learn More"
+    },
+    "collection": {
+      "view_all": "View All",
+      "filter_and_sort": "Filter & Sort",
+      "sort_by": "Sort by",
+      "filter": "Filter",
+      "clear_all": "Clear All",
+      "no_products": "No products found"
+    }
   },
   "filters": {
     "aria_label": "Collection filters",
@@ -24,6 +45,8 @@
     "min": "Min",
     "max": "Max",
     "sort_by": "Sort by",
+    "clear": "Clear",
+    "apply": "Apply",
     "sort": {
       "best_selling": "Best selling",
       "price_asc": "Price, low to high",
@@ -38,9 +61,19 @@
     "product": {
       "quantity": "Quantity",
       "add_to_cart": "Add to cart",
+      "buy_now": "Buy Now",
       "on_sale": "Sale",
       "sku": "SKU",
-      "usp": "Unique selling points"
+      "usp": "Unique selling points",
+      "price": "Price",
+      "in_stock": "In Stock",
+      "sold_out": "Sold out",
+      "secure_checkout": "Secure checkout",
+      "delivery": "Delivery",
+      "returns": "Returns",
+      "description": "Description",
+      "reviews": "Reviews",
+      "rating": "Rating"
     }
   },
   "cart": {
@@ -48,8 +81,22 @@
       "title": "Your cart",
       "close": "Close cart",
       "total": "Total",
+      "subtotal": "Subtotal",
       "view_cart": "View cart",
-      "checkout": "Checkout"
+      "checkout": "Checkout",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue shopping",
+      "remove": "Remove",
+      "quantity": "Quantity",
+      "free_shipping_remaining": "Add {{ remaining_amount }} more for FREE shipping!",
+      "free_shipping_eligible": "Congratulations! You've earned FREE shipping!",
+      "tax_note": "Shipping and taxes calculated at checkout"
     }
+  },
+  "localization": {
+    "language": "Language",
+    "country": "Country/Region",
+    "update_language": "Update language",
+    "update_country": "Update country/region"
   }
 }

@@ -12,9 +12,30 @@
     "breadcrumbs": { "label": "Brotkrumen", "home": "Startseite" }
   },
   "sections": {
-    "header": { "name": "Kopfzeile", "primary_navigation": "Hauptnavigation" },
+    "header": { 
+      "name": "Kopfzeile", 
+      "primary_navigation": "Hauptnavigation",
+      "account": "Konto",
+      "orders": "Bestellungen",
+      "cart": "Warenkorb",
+      "search": "Suche",
+      "language": "Sprache",
+      "country": "Land"
+    },
     "announcement_bar": { "name": "Ankündigungen" },
-    "footer": { "name": "Fußzeile", "navigation": "Fußzeilen-Navigation" }
+    "footer": { "name": "Fußzeile", "navigation": "Fußzeilen-Navigation" },
+    "hero": {
+      "shop_now": "Jetzt einkaufen",
+      "learn_more": "Mehr erfahren"
+    },
+    "collection": {
+      "view_all": "Alle anzeigen",
+      "filter_and_sort": "Filtern & Sortieren",
+      "sort_by": "Sortieren nach",
+      "filter": "Filter",
+      "clear_all": "Alle löschen",
+      "no_products": "Keine Produkte gefunden"
+    }
   },
   "filters": {
     "aria_label": "Kollektionsfilter",
@@ -24,6 +45,8 @@
     "min": "Min",
     "max": "Max",
     "sort_by": "Sortieren nach",
+    "clear": "Löschen",
+    "apply": "Anwenden",
     "sort": {
       "best_selling": "Bestseller",
       "price_asc": "Preis, aufsteigend",
@@ -38,9 +61,19 @@
     "product": {
       "quantity": "Menge",
       "add_to_cart": "In den Warenkorb",
+      "buy_now": "Jetzt kaufen",
       "on_sale": "Angebot",
       "sku": "Artikel-Nr.",
-      "usp": "Alleinstellungsmerkmale"
+      "usp": "Alleinstellungsmerkmale",
+      "price": "Preis",
+      "in_stock": "Auf Lager",
+      "sold_out": "Ausverkauft",
+      "secure_checkout": "Sichere Bezahlung",
+      "delivery": "Lieferung",
+      "returns": "Rückgabe",
+      "description": "Beschreibung",
+      "reviews": "Bewertungen",
+      "rating": "Bewertung"
     }
   },
   "cart": {
@@ -48,8 +81,22 @@
       "title": "Ihr Warenkorb",
       "close": "Warenkorb schließen",
       "total": "Summe",
+      "subtotal": "Zwischensumme",
       "view_cart": "Warenkorb ansehen",
-      "checkout": "Zur Kasse"
+      "checkout": "Zur Kasse",
+      "empty": "Ihr Warenkorb ist leer",
+      "continue_shopping": "Weiter einkaufen",
+      "remove": "Entfernen",
+      "quantity": "Menge",
+      "free_shipping_remaining": "Fügen Sie {{ remaining_amount }} mehr hinzu für KOSTENLOSEN Versand!",
+      "free_shipping_eligible": "Herzlichen Glückwunsch! Sie haben sich für kostenlosen Versand qualifiziert!",
+      "tax_note": "Versand und Steuern werden an der Kasse berechnet"
     }
+  },
+  "localization": {
+    "language": "Sprache",
+    "country": "Land/Region",
+    "update_language": "Sprache aktualisieren",
+    "update_country": "Land/Region aktualisieren"
   }
 }

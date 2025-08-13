@@ -1,0 +1,8 @@
+{% assign rating = product.metafields.reviews.rating | default: 0 %}
+{% assign count = product.metafields.reviews.count | default: 0 %}
+<span class="amz-stars" aria-label="{{ rating }} out of 5 stars">
+  {% for i in (1..5) %}
+    {% if i <= rating %}★{% else %}☆{% endif %}
+  {% endfor %}
+</span>
+<span class="amz-reviews-count">({{ count }})</span>

@@ -1,0 +1,87 @@
+<section class="amz-header" role="banner">
+  <div class="wrap">
+    <a class="amz-logo" href="/">{{ shop.name }}</a>
+    <form class="amz-search" action="/search" method="get" data-amz-search role="search" aria-label="Site search">
+      {% assign amz_categories = section.settings.search_categories | split: ',' %}
+      <select name="type" aria-label="Category">
+        {% for opt in amz_categories %}
+          <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
+        {% endfor %}
+      </select>
+      <input type="search" name="q" placeholder="Search products" autocomplete="off" />
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+    <nav class="amz-actions" aria-label="Account and cart">
+      {% if section.settings.show_language %}
+        <div class="language-selector">
+          {% if localization.available_locales.size > 1 %}
+            {% for locale in localization.available_locales %}
+              {% if locale.iso_code == 'en' %}
+                              <a href="{{ locale.url }}" {% if request.locale.iso_code == 'en' %}class="active"{% endif %}>EN</a>
+            {% elsif locale.iso_code == 'de' %}
+              <span>/</span>
+              <a href="{{ locale.url }}" {% if request.locale.iso_code == 'de' %}class="active"{% endif %}>DE</a>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <!-- Fallback if localization not configured -->
+            <a href="{{ routes.root_url }}" {% if request.locale.iso_code == 'en' %}class="active"{% endif %}>EN</a>
+            <span>/</span>
+            <a href="{{ routes.root_url }}" {% if request.locale.iso_code == 'de' %}class="active"{% endif %}>DE</a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if section.settings.show_account %}<a href="/account" aria-label="Account">Account</a>{% endif %}
+      <a href="/orders" aria-label="Orders">Orders</a>
+      <a class="amz-cart" href="/cart" aria-label="Cart" data-open-cart>Cart<span class="count">{{ cart.item_count }}</span></a>
+    </nav>
+  </div>
+  <div id="amz-mega" class="amz-mega" aria-hidden="true">
+    <div class="cols">
+      {% for block in section.blocks %}
+        <div>
+          <h4>{{ block.settings.title }}</h4>
+          <ul>
+            {% for i in (1..6) %}
+              {% assign label_key = 'label_' | append: i %}
+              {% assign url_key = 'url_' | append: i %}
+              {% assign label = block.settings[label_key] %}
+              {% assign url = block.settings[url_key] %}
+              {% if label and url %}
+                <li><a href="{{ url }}">{{ label }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Amazon‑like Header",
+  "settings": [
+    {"type":"text","id":"depts_label","label":"Departments button label","default":"All Departments"},
+    {"type":"text","id":"search_categories","label":"Search categories (comma‑separated)","default":"All, Electronics, Fashion, Home"},
+    {"type":"checkbox","id":"show_language","label":"Show language switch","default":true},
+    {"type":"checkbox","id":"show_account","label":"Show account link","default":true}
+  ],
+  "blocks": [
+    {
+      "type":"column",
+      "name":"Department column",
+      "settings":[
+        {"type":"text","id":"title","label":"Column title","default":"Shop by category"},
+        {"type":"text","id":"label_1","label":"Link 1 label"}, {"type":"url","id":"url_1","label":"Link 1 URL"},
+        {"type":"text","id":"label_2","label":"Link 2 label"}, {"type":"url","id":"url_2","label":"Link 2 URL"},
+        {"type":"text","id":"label_3","label":"Link 3 label"}, {"type":"url","id":"url_3","label":"Link 3 URL"},
+        {"type":"text","id":"label_4","label":"Link 4 label"}, {"type":"url","id":"url_4","label":"Link 4 URL"},
+        {"type":"text","id":"label_5","label":"Link 5 label"}, {"type":"url","id":"url_5","label":"Link 5 URL"},
+        {"type":"text","id":"label_6","label":"Link 6 label"}, {"type":"url","id":"url_6","label":"Link 6 URL"}
+      ]
+    }
+  ],
+  "presets": [{"name":"Amazon‑like Header"}]
+}
+{% endschema %}

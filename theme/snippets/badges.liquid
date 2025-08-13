@@ -1,0 +1,8 @@
+<div class="amz-badges">
+  {% if settings.badge_fast_delivery %}
+    <span class="amz-badge">{{ settings.badge_fast_delivery_text | default: 'Fast Delivery' }}</span>
+  {% endif %}
+  {% if product.tags contains 'deal' %}
+    <span class="amz-badge">Deal</span>
+  {% endif %}
+</div>

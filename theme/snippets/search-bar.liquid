@@ -1,0 +1,9 @@
+<form class="amz-search" action="/search" method="get" role="search" data-amz-search>
+  <select name="type" aria-label="Category">
+    {% for opt in settings.search_categories | default: 'All, Electronics, Fashion, Home' | split: ',' %}
+      <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
+    {% endfor %}
+  </select>
+  <input type="search" name="q" placeholder="Search products" autocomplete="off" />
+  <button type="submit">Search</button>
+</form>

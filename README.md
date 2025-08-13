@@ -6,10 +6,6 @@ A clean, fast, and accessible Shopify theme built with Liquid and a small amount
 ### Repository
 - GitHub: https://github.com/M-Walii/shopify-ecommerce-aquila-pro
 
-### Live demo
-- Theme demo (docs showcase): Replace with your deployed URL
-  -
-
 ### Highlights
 - Cart Drawer with AJAX add-to-cart, free-shipping progress, and line-item controls
 - Predictive Search with debounce and keyboard navigation
@@ -17,7 +13,7 @@ A clean, fast, and accessible Shopify theme built with Liquid and a small amount
 - Product page with variant syncing, swatches, price/media updates
 - Structured Data: Organization, Product, BreadcrumbList
 - Accessibility-first: skip link, focus states, aria-live, dialogs
-- i18n: English and German (`en.default.json`, `de.default.json`)
+- i18n: English and German (`en.default.json`, `de.json`)
 - Performance: responsive images, lazy loading, deferred JS, system font stack
 
 ### Tech stack
@@ -56,7 +52,6 @@ npm run docs:validate
 ├─ theme/                # Shopify theme (Liquid sections, templates, assets, config, locales)
 ├─ docs/                 # Static showcase site (deploy to Netlify/Vercel/GitHub Pages)
 ├─ tools/                # Dev utilities (image optimizer)
-├─ .github/workflows/    # CI (theme-check, docs validation)
 ├─ .theme-check.yml      # Theme Check config
 ├─ package.json          # Docs tooling and scripts
 └─ README.md             # This file
@@ -108,13 +103,6 @@ Events pushed to `window.dataLayer`:
 - System font stack / `font-display: swap`
 - Minimal JS, no front-end framework
 
-### CI
-- GitHub Actions workflow: `theme-check` on `theme/` and `html-validate` on `docs/`
-- Node modules cached for faster runs
-
-### Deploying the docs (showcase site)
-- Netlify: set publish directory to `docs/`, Node 20, and optionally run `npm run docs:validate`
-- Vercel/GitHub Pages: serve the `docs/` folder as static
 
 ### Image optimization (docs)
 ```bash
